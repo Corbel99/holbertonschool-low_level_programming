@@ -19,7 +19,7 @@ while (c <= 'z')
 	c++;
 }
 
-c = 'A'
+c = 'A';
 
 while (c <= 'Z')
 {
