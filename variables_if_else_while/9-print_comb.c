@@ -16,14 +16,14 @@ i = 0;
 while (i <= 9)
 {
 	putchar(i + '0');
-    
-    if(i <= 8)
-    {
-        putchar(',');
-        putchar(' ');
-    }
+	
+	if(i <= 8)
+	{
+		putchar(',');
+		putchar(' ');
+	}
 	i++;
-    
+	
 }
 
 putchar('\n');
