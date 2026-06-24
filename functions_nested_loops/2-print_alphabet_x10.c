@@ -1,7 +1,9 @@
 #include "main.h"
-
 /**
- * print_alphabet_x10 - prints the alphabet 10 times
+ * _islower - checks for lowercase character
+ * @c: character to check
+ *
+ * Return: 1 if lowercase, 0 otherwise
  */
 void print_alphabet_x10(void)
 {
