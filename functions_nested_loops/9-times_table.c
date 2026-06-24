@@ -8,15 +8,15 @@ void times_table(void)
 	int i;
 	int resultat;
 
-	for (n= 0; n < 10; n++)
+	for (n = 0; n < 10; n++)
 	{
-		for (i = 0; i <10; i++)
+		for (i = 0; i < 10; i++)
 		{
 			resultat = n * i;
 
-			 if (i > 0)
+			if (i > 0)
 			{
-				 if (resultat >= 10)
+				if (resultat >= 10)
 				{
 					_putchar(',');
 					_putchar(' ');
@@ -27,7 +27,7 @@ void times_table(void)
 					_putchar(' ');
 					_putchar(' ');
 				}
-			}    
+			}
 			if (resultat >= 10)
 			{
 				_putchar(resultat / 10 + '0');
@@ -40,5 +40,5 @@ void times_table(void)
 		}
 		_putchar('\n');
 	}
-  
+
 }
