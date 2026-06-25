@@ -8,7 +8,7 @@ int row_sum(int row, int cols)
 	for (c = 1; c <= cols; c++)
 		sum += row * c;
 
-	return sum;
+	return (sum);
 }
 
 int total_sum(int rows, int cols)
@@ -19,11 +19,11 @@ int total_sum(int rows, int cols)
 
 	for (r = 1; r <= rows; r++)
 	{
-		current + row_sum(r, cols);
+		current = row_sum(r, cols);
 		total += current;
 	}
 
-	return total;
+	return (total);
 }
 
 /* -- DO NOT Modify the code below this line -- */
@@ -31,5 +31,5 @@ int total_sum(int rows, int cols)
 int main(void)
 {
 	printf("%d\n", total_sum(3, 3));
-	return 0;
+	return (0);
 }
