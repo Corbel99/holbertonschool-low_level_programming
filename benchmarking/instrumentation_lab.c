@@ -9,7 +9,7 @@ static int dataset[DATASET_SIZE];
 static unsigned int next_value(unsigned int *state)
 {
 	*state = (*state * 1103515245u) + 12345u;
-	return *state;
+	return (*state);
 }
 
 static void build_dataset(void)
@@ -47,7 +47,7 @@ static unsigned long reduce_checksum(void)
 	for (i = 0; i < DATASET_SIZE; i++)
 		sum = (sum * 131ul) + (unsigned long)dataset[i];
 
-	return sum;
+	return (sum);
 }
 
 int main(void)
@@ -85,11 +85,11 @@ int main(void)
 
 	if (checksum == 0ul)
 		printf("impossible\n");
-	
+
 	printf("TOTAL seconds: %.6f\n", total_time);
 	printf("BUILT_DATA seconds: %.6f\n", build_time);
 	printf("PROCESS seconds: %.6f\n", process_time);
 	printf("REDUCE seconds: %.6f\n", reduce_time);
 
-	return 0;
+	return (0);
 }
