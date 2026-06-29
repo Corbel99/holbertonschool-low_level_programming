@@ -87,7 +87,6 @@ int main(void)
 	
 		printf("impossible\n");
 	
-
 	printf("TOTAL seconds: %.6f\n", total_time);
 	printf("BUILT_DATA seconds: %.6f\n", build_time);
 	printf("PROCESS seconds: %.6f\n", process_time);
