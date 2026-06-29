@@ -84,7 +84,6 @@ int main(void)
 	total_time = (double)(total_end - total_start) / (double)CLOCKS_PER_SEC;
 
 	if (checksum == 0ul)
-	
 		printf("impossible\n");
 	
 	printf("TOTAL seconds: %.6f\n", total_time);
