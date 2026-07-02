@@ -21,10 +21,10 @@ unsigned int _strspn(char *s, char *accept)
 				break;
 			}
 		}
-	}
-	if (accept[j] == '\0')
-	{
-		return (i);
+		if (accept[j] == '\0')
+		{
+			return (i);
+		}
 	}
 	return (i);
 }
