@@ -1,43 +1,118 @@
-# Green Efficiency Analysis
+# Green Tech Efficiency & Benchmarking Lab
 
-## Measurement Methodology
+## Performance Analysis Report
 
-The `time` command is used to see the total execution time of a program in the terminal. It displays three values: `real`, `user`, and `sys`. The `real` value is the total time from the start to the end of the program. The `user` value is the time spent running the program's own code. The `sys` value is the time used by the operating system while the program is running.
+### Introduction
 
-To get more precise results, the `clock()` function is used. It measures the execution time of specific parts of the program, making it easier to compare their performance.
+The purpose of this project was to compare two different algorithms that solve the same problem and see which one performs better. Even if two programs give exactly the same result, they do not always take the same amount of time to finish. This is why benchmarking is useful. It allows us to measure the execution time of each solution and compare them.
 
-To get more reliable results, the program is executed several times and the average execution time is calculated. Running the program more than once helps reduce small differences between each execution and gives more reliable results. This is a benchmarking method because it compares different solutions and helps find the most efficient one.
-
----
-
-## Observed Performance Differences
-
-The results show a clear difference in execution time between an algorithm that uses nested loops and another that uses only one loop. The three executions gave very similar results, showing that the measurements are consistent.
-
-The average execution time shows that the algorithm with nested loops is about **31,700 times slower** than the algorithm with one loop. This shows that the way an algorithm is designed can have a big impact on a program's performance.
-
-Big O also helps explain this difference. Nested loops make the program perform many more operations. As the amount of data increases, the difference becomes even bigger. A single-loop algorithm performs fewer operations and runs much faster.
+This project is also related to Green Computing. A program that finishes faster usually keeps the processor busy for a shorter time. It does not directly measure electricity consumption, but execution time can still give an idea of how many computing resources are used. Because of that, runtime is used in this project as an indicator of efficiency.
 
 ---
 
-## Relation Between Runtime and Energy Consumption
+### Measurement Methodology
 
-The measurements show that the naive algorithm takes an average of **0.485424 seconds** to run, while the single-loop algorithm takes only **0.0000153 seconds**. This means that the naive algorithm keeps the CPU busy for a much longer time.
+Two different methods were used to measure performance.
 
-This experiment does not directly measure power consumption. However, a program that uses the CPU for a longer time usually uses more resources. Improving a program's performance can reduce resource usage, which is one of the goals of **Green Tech**.
+The first one was the Linux `time` command. It provides three values:
+
+- **real**: the total execution time.
+- **user**: the time spent running the program on the CPU.
+- **sys**: the time spent by the operating system.
+
+Example:
+
+```text
+real    0m0.076s
+user    0m0.079s
+sys     0m0.000s
+```
+
+The second method uses the C function `clock()`. Instead of measuring the whole program, it measures only the part of the code that we want to benchmark.
+
+To make the measurements easier to compare, each algorithm was executed 100,000,000 times. The variable `result` was declared as `volatile` so that the compiler would not optimize the loop away.
+
+The benchmark was repeated three times. Doing several runs helps reduce small differences that can happen because of background programs or the operating system.
 
 ---
 
-## Limitations of the Experiment
+### Experimental Results
 
-This experiment has some limitations. The results can change depending on the computer, the operating system, or other programs running in the background.
+The project compares two approaches.
 
-Also, the measurements were made on only one program with a fixed amount of data. These results give a good idea of the program's performance, but they may be different if the testing conditions change.
+The first one is a naive algorithm that uses nested loops.
+
+The second one is a single-pass algorithm that only goes through the data once.
+
+The execution times were:
+
+Run 1:
+- Naive algorithm: 0.484466 s
+- Single-pass algorithm: 0.000015 s
+
+Run 2:
+- Naive algorithm: 0.487200 s
+- Single-pass algorithm: 0.000015 s
+
+Run 3:
+- Naive algorithm: 0.484607 s
+- Single-pass algorithm: 0.000016 s
+
+Average:
+- Naive algorithm: 0.485424 s
+- Single-pass algorithm: 0.0000153 s
+
+The three executions gave almost the same results, which means the measurements are consistent. On average, the naive algorithm is about 31,700 times slower than the single-pass version.
 
 ---
 
-## Practical Engineering Takeaway
+### Instrumentation Results
 
-This project shows that the same problem can have different solutions, but they are not all equally efficient. Even if different algorithms give the same result, it is better to choose the one that uses fewer resources.
+The execution time of each part of the program was also measured.
 
-Benchmarking helps compare different methods and choose the most efficient one. This helps developers create faster and more efficient programs while making better use of available resources.
+```text
+TOTAL       : 0.000221 s
+BUILD_DATA  : 0.000089 s
+PROCESS     : 0.000083 s
+REDUCE      : 0.000048 s
+```
+
+These measurements show how much time is spent in each stage of the program. This makes it easier to identify which part takes the longest time and where future optimizations could be made.
+
+---
+
+### Performance Analysis
+
+The difference between the two algorithms comes from the number of operations they perform.
+
+The naive solution uses nested loops. This means that some operations are repeated many times. As the amount of data grows, the execution time increases quickly.
+
+The single-pass algorithm is simpler. It only reads the data once and avoids unnecessary work. Because of that, it finishes much faster while producing the same result.
+
+This shows that choosing a better algorithm often has a much bigger impact than trying to make small optimizations in the code.
+
+---
+
+### Runtime as an Energy Indicator
+
+This project does not measure the actual electrical energy used by the computer.
+
+Instead, execution time is used as an indicator. In general, if a program finishes faster, the processor stays active for a shorter period of time. This usually means fewer computing resources are used. It is not an exact measurement of energy consumption, but it is still useful when comparing two algorithms that solve the same problem.
+
+---
+
+### Limitations
+
+Like every benchmark, this experiment has some limitations.
+
+The results depend on the computer, the processor, the operating system and the compiler options. Background applications can also influence the execution time. In addition, the tests were performed with only one dataset. Using different data or another computer could produce different results.
+
+---
+
+### Conclusion
+
+This experiment shows that two algorithms can solve the same problem while having very different execution times.
+
+The benchmark clearly shows that the single-pass algorithm is much faster than the naive solution. Even though both programs produce the same output, the second algorithm requires much less processing time.
+
+This project also shows why algorithm choice is important. Improving the algorithm can have a much greater effect than making small changes to the code. From a Green Computing point of view, reducing execution time can also help reduce the use of computing resources.
