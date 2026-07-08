@@ -1,3 +1,5 @@
+#ifndef MAIN_H
+#define MAIN_H
 /**
  * struct dog - stores information about a dog
  * @name: dog's name
@@ -11,3 +13,4 @@ struct dog
 	float age;
 	char *owner;
 };
+#endif
