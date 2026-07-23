@@ -1,24 +1,49 @@
-#ifndef LIST_H
-#define LIST_H
-#include <stddef.h>
+#include "lists.h"
+#include <stdlib.h>
+#include <string.h>
 
 /**
- * struct list_s - singly linked list
- * @str: string - (malloc'ed string)
- * @len: length of the string
- * @next: points to the next node
+ * _strlen - returns the length of a string
+ * @str: string to measure
  *
- * Description: singly linked list node structure
+ * Return: length of the string
  */
-typedef struct list_s
+unsigned int _strlen(const char *str)
 {
-    char *str;
-    unsigned int len;
-    struct list_s *next;
-} list_t;
+	unsigned int len = 0;
 
-size_t print_list(const list_t *h);
-size_t list_len(const list_t *h);
-list_t *add_node(list_t **head, const char *str);
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
+}
 
-#endif
+/**
+ * add_node - adds a new node at the beginning of a list_t list
+ * @head: address of the first node of the list
+ * @str: string to duplicate
+ *
+ * Return: address of the new node, or NULL if it fails
+ */
+list_t *add_node(list_t **head, const char *str)
+{
+	list_t *new;
+
+	new = malloc(sizeof(list_t));
+	if (new == NULL)
+		return (NULL);
+
+	new->str = strdup(str);
+	if (new->str == NULL)
+	{
+		free(new);
+		return (NULL);
+	}
+
+	new->len = _strlen(str);
+	new->next = *head;
+	*head = new;
+
+	return (new);
+}
