@@ -1,49 +1,31 @@
-#include "lists.h"
-#include <stdlib.h>
-#include <string.h>
+#ifndef LISTS_H
+#define LISTS_H
+
+#include <stddef.h>
 
 /**
- * _strlen - returns the length of a string
- * @str: string to measure
- *
- * Return: length of the string
+ * struct list_s - singly linked list
+ * @str: string
+ * @len: length of the string
+ * @next: points to the next node
  */
-unsigned int _strlen(const char *str)
+typedef struct list_s
 {
-	unsigned int len = 0;
+	char *str;
+	unsigned int len;
+	struct list_s *next;
+} list_t;
 
-	while (str[len] != '\0')
-	{
-		len++;
-	}
-	return (len);
-}
+/* Task 0 */
+size_t print_list(const list_t *h);
 
-/**
- * add_node - adds a new node at the beginning of a list_t list
- * @head: address of the first node of the list
- * @str: string to duplicate
- *
- * Return: address of the new node, or NULL if it fails
- */
-list_t *add_node(list_t **head, const char *str)
-{
-	list_t *new;
+/* Task 1 */
+size_t list_len(const list_t *h);
 
-	new = malloc(sizeof(list_t));
-	if (new == NULL)
-		return (NULL);
+/* Task 2 */
+list_t *add_node(list_t **head, const char *str);
 
-	new->str = strdup(str);
-	if (new->str == NULL)
-	{
-		free(new);
-		return (NULL);
-	}
+/* Utility function */
+unsigned int _strlen(const char *str);
 
-	new->len = _strlen(str);
-	new->next = *head;
-	*head = new;
-
-	return (new);
-}
+#endif
